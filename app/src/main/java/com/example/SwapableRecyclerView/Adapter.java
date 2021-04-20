@@ -1,9 +1,12 @@
-package com.example.multiviewrecyclerview;
+package com.example.SwapableRecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.SwapableRecyclerView.R;
+
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

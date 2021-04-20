@@ -1,4 +1,4 @@
-package com.example.multiviewrecyclerview;
+package com.example.SwapableRecyclerView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.SwapableRecyclerView.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,52 @@ public class MainActivity extends AppCompatActivity {
      recyclerView.setAdapter(Adapter);
      DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
      recyclerView.addItemDecoration(dividerItemDecoration);
+
+     //for right swipe.....
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                stringList.remove(viewHolder.getAdapterPosition());
+
+
+                Adapter.notifyDataSetChanged();
+
+
+
+            }
+        }).attachToRecyclerView(recyclerView);
+
+
+        //for left swipe
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                stringList.remove(viewHolder.getAdapterPosition());
+
+
+                Adapter.notifyDataSetChanged();
+
+
+
+            }
+        }).attachToRecyclerView(recyclerView);
 
 
 
